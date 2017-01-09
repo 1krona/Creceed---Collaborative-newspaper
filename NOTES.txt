@@ -1,0 +1,3 @@
+Models -> Here you set up relations, otherwise it's just like a Database table connection, eg. "hasMany" and "belongsTo"
+Controller -> Here you fetch data from models and update data
+View -> Here you show selected data and/or get user to input data which call functions in different _routes_

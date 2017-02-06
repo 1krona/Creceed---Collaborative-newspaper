@@ -2,8 +2,10 @@
 
 @section('content')
 	@include('includes.message-block')
+
 	<section class="row new-post">
-		<div class="col-md-6 col-md-offset-3">
+		@include('includes.draft-sidebar')
+		<div class="col-md-6 ">
 			<header> 
 				<h3>What do you have to say?</h3>
 			</header>
@@ -11,14 +13,14 @@
 			<form action="{{ route('post.create') }}" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="title">Title</label>
-					<input type="text" name="title" class="form-control" placeholder="Your title" id="title">
+					<input type="text" name="title" class="form-control" placeholder="Your title" id="title" value="@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->title }}@endif">
 				</div>
 				<div class="form-group">
-					<textarea class="form-control" name="body" id="new-post" rows="15" placeholder="Your Post"></textarea>
+					<textarea class="form-control" name="body" id="new-post" rows="15" placeholder="Your Post"> @if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->body }}@endif</textarea>
 				</div>
 				<div class="form-group"> <!-- blade if statements which adds bootstrap class 'has-error' if field has error -->
 					<label for="category">Category</label>
-					<input class="form-control" type="text" name="category" id="category" placeholder="Categories, separate using comma."> <!-- Request::old fetch old value from form -->
+					<input class="form-control" type="text" name="category" id="category" placeholder="Categories, separate using comma." value="@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->category }}@endif">
 				</div>
 				<div>
 					<label for="type">Article type</label>
@@ -47,11 +49,11 @@
 						<input type="text" name="source-3" class="form-control" placeholder="Source #3" id="source-3">
 					</div>
 				</div>
-				<br></br>
+				<br>
 
 
-				<button type="submit" class="btn btn-primary">Create Post</button>
-
+				<button type="submit" class="btn btn-primary" name="publish" value="1">Create Post</button>
+				<button type="submit" class="btn btn-primary btn-draft" name="publish" value="0">Save Draft</button>
 
 
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">

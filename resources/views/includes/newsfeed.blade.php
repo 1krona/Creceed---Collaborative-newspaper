@@ -2,7 +2,7 @@
     <div class="col-sm-8">
         <header><h4 style="color: #444;">Top stories...</h4></header>
 
-        @foreach($posts as $post)
+        @foreach($posts->where('published', 1) as $post)
                 <!-- data-postid sets customized attribute, in this case to identify each post -->
         <article class="post" data-postid=" {{ $post->id }} ">
             <h2><a class="post-title" href="{{ URL::to('posts/' . $post->id) }}">{{ $post->title }}</a></h2>

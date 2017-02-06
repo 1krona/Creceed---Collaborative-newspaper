@@ -50,7 +50,7 @@ Route::post('/signin', [
 	'as' => 'signin'
 ]);
 
-Route::get('/dashboard', [
+Route::get('/dashboard/', [
 	'uses' => 'PostController@getDashboard',
 	'as' => 'dashboard',
 	'middleware' => 'auth'
@@ -109,4 +109,10 @@ Route::post('/likesource', [
 ]);
 Route::get('/posts/{id}', [
 	'uses' => 'PostController@postShowPost'
+]);
+
+Route::get('/dashboard/{draft_id}', [
+	'uses' => 'PostController@getDashboardWithDraft',
+	'as' => 'get.draft',
+	'middleware' => 'auth'
 ]);

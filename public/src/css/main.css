@@ -86,6 +86,7 @@ header{
 
 }
 
+/*------- CREATE POST ---------*/
 .new-post{
 	padding: 16px 0;
 	border.bottom: 1px solid #ccc;
@@ -94,7 +95,12 @@ header{
 .new-post header, .posts header{
 	margin-bottom: 20px;
 }
+.btn-draft{
 
+	background-color: #999;
+	border-color: #888;
+}
+/*--------- END CREATE POST -------*/
 .posts .post {
 	padding-left: 10px;
 	padding-bottom: 10px;

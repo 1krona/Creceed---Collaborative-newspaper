@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('type'); /* Sets type of post, eg. Opinion or News article */
             $table->text('image')->nullable();
 			$table->integer('user_id');
+            $table->boolean('published');
 
         });
     }

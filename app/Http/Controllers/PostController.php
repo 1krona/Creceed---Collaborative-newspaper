@@ -68,8 +68,14 @@ class PostController extends Controller
 			'body' => 'required|max:2000'
 		]);
 
+
+		if($request['draft_id']){
+			$post = Post::find($request['draft_id']);
+		}else{
+			$post = new Post();
+		}
+
 		// stores data within the posts columns
-		$post = new Post();
 		$post->title = $request['title'];
 		$post->body = $request['body'];
 		$post->category = $request['category'];
@@ -87,11 +93,6 @@ class PostController extends Controller
 			Image::make($image)->resize(800, 400)->save($location); // Resize image to 800 x 400 and stores it
 
 			$post->image = $filename; // Saves path in database
-		}
-
-		//Saves posts as currently Authenticated user
-		if ($request->user()->posts()->save($post)) {
-			$message = 'Post successfully created!';
 		}
 
 		//Save sources to post
@@ -119,6 +120,16 @@ class PostController extends Controller
 
 			$source->save();
 		}
+		if($request['draft_id']){
+			$post->update();
+			$message = 'Draft successfully created!';
+		}
+		//Saves posts as currently Authenticated user
+		elseif ($request->user()->posts()->save($post)) {
+			$message = 'Post successfully created!';
+		}
+
+
 
 
 		return redirect()->route('dashboard')->with(['message' => $message]);

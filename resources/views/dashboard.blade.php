@@ -57,6 +57,9 @@
 
 
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+				<!-- Sends $draft_id to controller if it's NULL it'll save the post instead of update -->
+				<input type="hidden" name="draft_id" value="{{$draft_id}}">
 			</form>
 
 		</div>

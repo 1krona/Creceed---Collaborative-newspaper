@@ -95,6 +95,18 @@ class PostController extends Controller
 			$post->image = $filename; // Saves path in database
 		}
 
+		//Fetch YoutubeID from link
+
+		if(strlen($request['video_link']) > 11)
+		{
+			if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $request['video_link'], $match))
+			{
+				$post->video_link = $match[1];
+			}
+
+		}
+
+
 		//Save sources to post
 		if ($request['source-1']) {
 

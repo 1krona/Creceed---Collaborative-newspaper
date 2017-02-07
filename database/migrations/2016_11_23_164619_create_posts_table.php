@@ -17,11 +17,13 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('body');
+            $table->text('image')->nullable();
+            $table->text('video_link')->nullable();
             $table->string('category');
             $table->string('type'); /* Sets type of post, eg. Opinion or News article */
-            $table->text('image')->nullable();
 			$table->integer('user_id');
             $table->boolean('published');
+
 
         });
     }

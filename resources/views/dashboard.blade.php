@@ -16,8 +16,17 @@
 					<input type="text" name="title" class="form-control" placeholder="Your title" id="title" value="@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->title }}@endif">
 				</div>
 				<div class="form-group">
-					<textarea class="form-control" name="body" id="new-post" rows="15" placeholder="Your Post"> @if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->body }}@endif</textarea>
+					<textarea class="form-control" name="body" id="new-post" rows="15" placeholder="Your Post">@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->body }}@endif</textarea>
 				</div>
+				<div class="form-group col-sm-6">
+					<label for="image">Upload image</label>
+					<input type="file" name="image" class="form-control" id="image">
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="video_link">Video link</label>
+					<input type="text" name="video_link" class="form-control" placeholder="https://youtube.com/example-video" value="@if($draft_id){{ "https://www.youtube.com/watch?v=" . Auth::user()->posts()->where('id', $draft_id)->first()->video_link }}@endif">
+				</div>
+
 				<div class="form-group"> <!-- blade if statements which adds bootstrap class 'has-error' if field has error -->
 					<label for="category">Category</label>
 					<input class="form-control" type="text" name="category" id="category" placeholder="Categories, separate using comma." value="@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->category }}@endif">
@@ -32,10 +41,7 @@
 
 					</select>
 				</div>
-				<div class="form-group">
-					<label for="image">Upload image</label>
-					<input type="file" name="image" class="form-control" id="image">
-				</div>
+
 
 
 				<span class="add-sources">Add sources</span>

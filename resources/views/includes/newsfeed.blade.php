@@ -6,13 +6,19 @@
                 <!-- data-postid sets customized attribute, in this case to identify each post -->
         <article class="post" data-postid=" {{ $post->id }} ">
             <h2><a class="post-title" href="{{ URL::to('posts/' . $post->id) }}">{{ $post->title }}</a></h2>
-            @if ($post->image)
-                <img class="post-image" src="{{URL::to('images/' . $post->image)}}">
+
+            @if($post->video_link)
+                <iframe width="560" height="315" src="http://www.youtube.com/embed/{{$post->video_link}}" frameborder="0" allowfullscreen></iframe>
+                <br>
+            @else
+                @if ($post->image)
+                    <img class="post-image" src="{{URL::to('images/' . $post->image)}}">
+                @endif
+                <p class="post-body">{{ str_limit($post->body, 350) }}</p>
             @endif
-            <p class="post-body">{{ str_limit($post->body, 350) }}</p>
-            <a href="{{ URL::to('posts/' . $post->id) }}" style="color: #00B1B3;">Read more...</a>
 
             <!-- INTERACTION-->
+                    <a href="{{ URL::to('posts/' . $post->id) }}" style="color: #00B1B3;">Read more...</a>
             <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true">
                     </span>

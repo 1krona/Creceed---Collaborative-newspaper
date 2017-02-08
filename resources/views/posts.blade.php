@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="info">
-                    Posted by {{$post->user->first_name}}  on {{ $post->created_at }}
+                    Posted by <a href="{{ route('get.user', ['user_id' => $post->user->id]) }}" style="color: #00B1B3;"> {{$post->user->first_name}} </a>  on {{ $post->created_at }}
                 </div>
                 <div class="score">
                     <b>Attention score: {{$post->likes->filter(function ($item) {

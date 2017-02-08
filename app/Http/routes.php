@@ -116,3 +116,8 @@ Route::get('/dashboard/{draft_id}', [
 	'as' => 'get.draft',
 	'middleware' => 'auth'
 ]);
+
+Route::get('/user/{user_id}', [
+	'uses' => 'UserController@getUser',
+	'as' => 'get.user'
+]);

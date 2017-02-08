@@ -15,6 +15,7 @@
                     <img class="post-image" src="{{URL::to('images/' . $post->image)}}">
                 @endif
                 <p class="post-body">{{ str_limit($post->body, 350) }}</p>
+                <br>
             @endif
 
             <!-- INTERACTION-->
@@ -29,7 +30,7 @@
             </button>
             <button class="btn btn-primary">Comment</button>
             <button class="btn btn-primary btn-sources">
-                Sources |
+                Credibility |
                 <b> {{round($post->likes->where('post_id', $post->id)->filter(function ($item) { return $item['source_id'] !== null; })->avg('like') * 10)}}</b>
             </button>
 

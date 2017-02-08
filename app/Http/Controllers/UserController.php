@@ -83,4 +83,11 @@ class UserController extends Controller{
 		$file = Storage::disk('local')->get($filename); 
 		return new Response($file, 200); //We don't return a new view, instead we return the source to where the file is stored.
 	}
+
+	public function getUser($user_id){
+
+		$user = User::find($user_id);
+
+		return view('user', ['user' => $user]);
+	}
 }

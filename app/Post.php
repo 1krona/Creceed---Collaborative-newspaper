@@ -23,4 +23,8 @@ class Post extends Model
 	{
 		return $this->hasMany('App\Source');
 	}
+	public function categories()
+	{
+		return $this->belongsToMany('App\Category');
+	}
 }

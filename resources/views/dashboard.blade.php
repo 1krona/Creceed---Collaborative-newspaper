@@ -28,8 +28,8 @@
 				</div>
 
 				<div class="form-group"> <!-- blade if statements which adds bootstrap class 'has-error' if field has error -->
-					<label for="category">Category</label>
-					<input class="form-control" type="text" name="category" id="category" placeholder="Categories, separate using comma." value="@if($draft_id){{ Auth::user()->posts()->where('id', $draft_id)->first()->category }}@endif">
+					<label for="category">Categories</label>
+					<input class="form-control" type="text" name="categories" id="categories" placeholder="Categories, separate using comma." value="">
 				</div>
 				<div>
 					<label for="type">Article type</label>

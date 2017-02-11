@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->text('image')->nullable();
             $table->text('video_link')->nullable();
-            $table->string('category');
             $table->string('type'); /* Sets type of post, eg. Opinion or News article */
 			$table->integer('user_id');
             $table->boolean('published');

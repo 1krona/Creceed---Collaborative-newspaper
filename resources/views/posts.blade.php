@@ -9,7 +9,8 @@
 @section('content')
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
-            <header><h4>Epistemology, statistics, politics</h4></header>
+
+                <header><h4>@foreach($post->categories as $category){{$category['name']}} | @endforeach</h4></header>
 
 
             <!-- data-postid sets customized attribute, in this case to identify each post -->

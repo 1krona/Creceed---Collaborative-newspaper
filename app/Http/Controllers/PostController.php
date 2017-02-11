@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Category;
 use App\Post;
 use App\Like;
 use App\Source;
@@ -78,7 +79,6 @@ class PostController extends Controller
 		// stores data within the posts columns
 		$post->title = $request['title'];
 		$post->body = $request['body'];
-		$post->category = $request['category'];
 		$post->type = $request['type'];
 		$post->published = $request['publish'];
 
@@ -105,6 +105,17 @@ class PostController extends Controller
 			}
 
 		}
+
+		//save categories
+
+		$categoryStr = $request->input('categories');
+		$categories = array_map('trim', explode(',', $categoryStr));
+		foreach ($categories as $category) {
+			$catModel = Category::firstOrCreate(['name' => $category]);
+			$catModel->posts()->save($post);//$post can be the post model or the id that you want to associate with the category
+
+		}
+
 
 
 		//Save sources to post
@@ -244,4 +255,3 @@ class PostController extends Controller
 	}
 
 }
-
